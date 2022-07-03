@@ -1,0 +1,97 @@
+using System;
+using System.Collections.ObjectModel;
+
+// Base Class
+namespace Relationship
+{
+    public class SalarySlip
+    {
+        public virtual int BasicSalary { get { return 1500; } }
+        public virtual int FuelAllowance { get; }
+
+        public virtual int MedicalAllowance { get; }
+
+
+        public int GrossSalary()
+        {
+
+            return BasicSalary + FuelAllowance + MedicalAllowance;
+        }
+    }
+}
+namespace Relationship
+{
+    public class Engineer : SalarySlip
+    {
+        public override int FuelAllowance { get { return 100; } }
+
+        public override int MedicalAllowance { get { return 500; } }
+
+    }
+}
+
+namespace Relationship
+{
+    public class Manager : SalarySlip
+    {
+        public override int FuelAllowance { get { return 250; } }
+
+        public override int MedicalAllowance { get { return 1000; } }
+    }
+}
+
+namespace Relationship
+{
+    public class Analysts : SalarySlip
+    {
+        public override int FuelAllowance { get { return 150; } }
+
+        public override int MedicalAllowance { get { return 800; } }
+    }
+}
+
+namespace Relationship
+{
+    class Program
+    {
+        static public void Main()
+        {
+            string designation;
+            Console.Write("Enter your Designation : ");
+            designation = Console.ReadLine();
+            var first = new List<SalarySlip>
+        {
+                new Engineer(),
+                new Manager(),
+                new Analysts()
+        };
+
+
+            if (designation == "Engineer" || designation == "engineer")
+            {
+                Console.WriteLine("Your Salary Details are as follows:" + "\n\tBasic Salary :$" + first[0].BasicSalary +
+              "\n\tFuel Allowance :$" + first[0].FuelAllowance + "\n\tMedical Allowance :$"
+                + first[0].MedicalAllowance + "\n\n\tTotal Salary :$" + first[0].GrossSalary());
+            }
+            else if (designation == "Manager" || designation == "manager")
+            {
+                Console.WriteLine("Your Salary Details are as follows:" + "\n\tBasic Salary :$" + first[1].BasicSalary +
+             "\n\tFuel Allowance :$" + first[1].FuelAllowance + "\n\tMedical Allowance :$"
+               + first[1].MedicalAllowance + "\n\n\tTotal Salary :$" + first[1].GrossSalary());
+            }
+            else if (designation == "Analysts" || designation == "analysts")
+            {
+                Console.WriteLine("Your Salary Details are as follows:" + "\n\tBasic Salary :$" + first[2].BasicSalary +
+             "\n\tFuel Allowance :$" + first[2].FuelAllowance + "\n\tMedical Allowance :$"
+               + first[2].MedicalAllowance + "\n\n\tTotal Salary :$" + first[2].GrossSalary());
+            }
+            else
+            {
+                Console.WriteLine("Invalid Value");
+            }
+
+
+
+        }
+    }
+}
